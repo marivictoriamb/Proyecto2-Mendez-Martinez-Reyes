@@ -258,8 +258,8 @@ public class ManejoDocumentos extends javax.swing.JFrame {
                     int input = JOptionPane.showConfirmDialog(null, "\nDicho documento se encuentra en la cola de impresion, desea eliminarlo de la cola?");
                     
                     if (input == 0){
-                        tabla.SearchDocumento(usuario.getNombreUsuario(), documento.getNombreDocumento(), monticulo.Peek());
-                        monticulo.EliminarDocumento(documento.getPosicion());
+                        int pos = tabla.SearchDocumento(usuario.getNombreUsuario(), documento.getNombreDocumento(), monticulo.Peek());
+                        monticulo.EliminarDocumento(pos);
                         usuarios.ChequearDoc(usuario.getNombreUsuario(), doc, false);
                         usuarios.Dead(usuario.getNombreUsuario());
                     }

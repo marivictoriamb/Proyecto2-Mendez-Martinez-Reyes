@@ -200,10 +200,13 @@ public class MonticuloBinario {
                 if(!iguales(i, hermanoIzq(i))){
                     if(cola[padre(i)].getTiempo() < cola[hermanoIzq(i)].getTiempo()){
                         NodoMonticulo hermano = cola[hermanoIzq(i)];
+                        
+                        cola[padre(i)].setPos(hermanoIzq(i));
+                        cola[hermanoIzq(i)].setPos(i);
+                        
                         cola[hermanoIzq(i)] = cola[padre(i)];
                         cola[i] = hermano; 
                         i = padre(i); // sube un nivel en el árbol
-                        System.out.println(i);
                         change = 1;
                     }
                 }
@@ -214,6 +217,10 @@ public class MonticuloBinario {
                     if(!iguales(i, hermanoDer(i))){
                         if(cola[padre(i)].getTiempo() > cola[hermanoDer(i)].getTiempo()){
                             NodoMonticulo hermano = cola[hermanoDer(i)];
+                            
+                            cola[padre(i)].setPos(hermanoDer(i));
+                            cola[hermanoDer(i)].setPos(i);
+                        
                             cola[hermanoDer(i)] = cola[padre(i)];
                             cola[i] = hermano; 
                             i = padre(i); // sube un nivel en el árbol
@@ -224,11 +231,13 @@ public class MonticuloBinario {
             }
             
             if (change == 0){
+                cola[padre(i)].setPos(i);
                 cola[i] = cola[padre(i)]; // baja el padre al hueco
                 i = padre(i); // sube un nivel en el árbol
             }
         }
         
+        nuevoDoc.setPos(i);
         cola[i] = nuevoDoc; // sitúa la clave en su posición
         return i;
     }
@@ -294,7 +303,10 @@ public class MonticuloBinario {
                 
             // compara raiz con el menor de los hijos
             if (cola[hijo].getTiempo() < (cola[raiz].getTiempo())){
+                cola[raiz].setPos(hijo);
                 NodoMonticulo t = cola[raiz];
+                cola[hijo].setPos(raiz);
+                
                 cola[raiz] = cola[hijo];
                 cola[hijo] = t;
                 raiz = hijo; // continua por la rama de claves mínimas 
@@ -327,6 +339,8 @@ public class MonticuloBinario {
         JOptionPane.showMessageDialog(null, "\nDocumento: " + doc.getNombreDocumento() + " impreso!");
         return doc.getNombreDocumento();
     }
+    
+    
     
 
     public NodoMonticulo[] getCola() {
