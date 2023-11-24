@@ -4,20 +4,32 @@ package colaimpresion;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Clase Usuarios que tiene en una tabla de dispersion los usuarios registrados
+* @autor: Maria Martinez
+* @version: 23/11/23
+*/
 public class Usuarios {
     private NodoUsuario tabla []; // [ [ Usuario ] , [] , [] ] Usuario = . - . - . [Documento] 
     private NodoUsuario[] nombres;
     private int size;
     
+    /**
+     * Descripcion: Constructor de la clase Usuarios
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     public Usuarios(){
         tabla = new NodoUsuario[23];
         nombres = new NodoUsuario[0];
         size = 0;
     }
     
+    /**
+     * Descripcion: Agrega usuarios dados por parametro
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param divde: Array con el nombre de usuario y su prioridad (viene del CSV file)
+     */
     public void CargarArchivo(String [] divide){
         tabla = new NodoUsuario[23];
         for (int i = 0; i < divide.length; i ++){
@@ -32,6 +44,13 @@ public class Usuarios {
         }
     }
     
+    /**
+     * Descripcion: Agrega un nuevo usuario en la tabla de dispersion
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre_usuario: Nombre de usuario a registrar
+     * @param tipo: Prioridad del usuario a registrar
+     */
     public void AgregarUsuario(String nombre_usuario, String tipo){
         int key = CalculateHash(nombre_usuario);
         
@@ -78,6 +97,14 @@ public class Usuarios {
         }        
     }
     
+    
+    /**
+     * Descripcion: Funcio hash para acceder al grupo donde posiblemente se ecnuentre el usuario
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param word: Clave primaria para el hash / Nombre del usuario
+     * @return int: Posicion de la tabla para dicho usuario
+     */
     public int CalculateHash(String word) {
         int hashValue = 0;
         for (int i = 0; i < word.length(); i++) {
@@ -86,6 +113,12 @@ public class Usuarios {
         return hashValue%tabla.length;
     }
     
+    /**
+     * Descripcion: Elimina un usuario solo si no tiene documentos en la cola de prioridad, de lo contrario  les agrega un atributo dead
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param nombre: Nombre del usuario
+     */
     public void EliminarUsuario(String nombre){
         int key = CalculateHash(nombre);
         
@@ -121,6 +154,13 @@ public class Usuarios {
         
     }
     
+    /**
+     * Descripcion: Busca un usuario en la tabla
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre: Nombre del usuario
+     * @return aux: Objeto NodoUsuario buscado
+     */
     public NodoUsuario Buscar(String nombre){
         int key = CalculateHash(nombre);
         
@@ -141,6 +181,12 @@ public class Usuarios {
         return aux;
     }
     
+    /**
+     * Descripcion: Busca los documentos de un usuario registrado
+     * @autor: Andrea Reyes
+     * @version: 20/11/23
+     * @param nombre_usuario: Nombre de usuario
+     */
     public Documento[] BuscarDocumentosUsuario(String nombre_usuario){
         int key = CalculateHash(nombre_usuario);
         
@@ -163,6 +209,14 @@ public class Usuarios {
         return documentos;   
     }
     
+    /**
+     * Descripcion: Busca un usuario y el documento indicado
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre: Nombre del usuario
+     * @param doc: Nombre de documento a buscar
+     * @return documentos: Objeto Documento buscado
+     */
     public Documento BuscarDocumento(String nombre, String doc){
         int key = CalculateHash(nombre);
         
@@ -186,6 +240,13 @@ public class Usuarios {
     }
     
     
+    /**
+     * Descripcion: Busca el usuario correspondiente al documento
+     * @autor: Andrea Reyes
+     * @version: 23/11/23
+     * @param nombreDocumento: Nombre del documento
+     * @return user: NodoUsuario que contiene dicho documento
+     */
      public NodoUsuario BuscarUsuario(String nombreDocumento){
         boolean found = false;
         NodoUsuario user = null;
@@ -211,6 +272,15 @@ public class Usuarios {
         return user;
     }
     
+     /**
+     * Descripcion: Agrega un documento a un usuario dado
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre: Nombre del usuario
+     * @param nombreDoc: Nombre del documento
+     * @param tipo: Tipo de documento
+     * @param size: Tamano del documento
+     */
     public void AgregarDoc(String nombre, String nombreDoc, String tipo, int size){
         int key = CalculateHash(nombre);  
         NodoUsuario valor = tabla[key];
@@ -228,6 +298,14 @@ public class Usuarios {
         }
     }
     
+    /**
+     * Descripcion: Elimina un documento de un usuario
+     * @autor: Andrea Reyes
+     * @version: 20/11/23
+     * @param nombre: Nombre del usuario
+     * @param nombre_documento: Nombre del documento
+     * @return documento: Documento eliminado
+     */
     public Documento EliminarDoc(String nombre, String nombre_documento){
         int key = CalculateHash(nombre);
         
@@ -252,6 +330,14 @@ public class Usuarios {
     }
     
     
+    /**
+     * Descripcion: Cambiar el valor de encolado o no del documento de un usuario
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param nombre: Nombre del usuario
+     * @param nombre_doc: Nombre de documento
+     * @param bool: Valor a cambiar
+     */
     public void ChequearDoc(String nombre, String nombre_doc, boolean bool){        
         int key = CalculateHash(nombre);
         
@@ -271,6 +357,12 @@ public class Usuarios {
         
     }
     
+    /**
+     * Descripcion: Dado un usuario que tenga el atributo dead, eliminarlo finalmente
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param nombre: Nombre del usuario
+     */
     public void Dead(String nombre){
         int key = CalculateHash(nombre);
         

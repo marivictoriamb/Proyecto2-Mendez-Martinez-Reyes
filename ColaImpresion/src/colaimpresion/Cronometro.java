@@ -11,9 +11,10 @@ import javax.swing.Timer;
 
 
 /**
- *
- * @author MAURICIO MENDEZ
- */
+* Descripcion: Clae Cronometro que se encarga de llevar el tiempo de ejecucion de programa
+* @autor: Mauricio Mendez
+* @version: 21/11/23
+*/
 public class Cronometro {
     private Timer myTimer;
     private int horas;
@@ -21,6 +22,11 @@ public class Cronometro {
     private int segundos;
     private int milisegundos;
     
+    /**
+     * Descripcion: Constructor de la clase Cronometro
+     * @autor: Mauricio Mendez
+     * @version: 21/11/23
+     */
     public Cronometro(){
         myTimer = new Timer(0, (ActionEvent e) -> {
             if(myTimer.isRunning()==false){
@@ -32,11 +38,22 @@ public class Cronometro {
        
     }
     
+    /**
+     * Descripcion: Inicia el cronometro
+     * @autor: Mauricio Mendez
+     * @version: 21/11/23
+     */
     public void IniciarCronometro(){
         myTimer.start();
         ActualizarTiempo();
         
     }
+    
+    /**
+     * Descripcion: Actualiza el marcador de segundos por cada 60 milisegundos
+     * @autor: Mauricio Mendez
+     * @version: 21/11/23
+     */
     public void ActualizarTiempo(){
         milisegundos++;
         if(milisegundos==60){
@@ -48,6 +65,12 @@ public class Cronometro {
     public int TiempoActual(){
         return segundos;
     }
+    
+    /**
+     * Descripcion: Detiene el cronometro
+     * @autor: Mauricio Mnedez
+     * @version: 21/11/23
+     */
     public void DetenerCronometro(){
         myTimer.stop();
 

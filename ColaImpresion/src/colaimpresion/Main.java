@@ -14,9 +14,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Interfaz Principal
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class Main extends javax.swing.JFrame {
     private Usuarios usuarios = new Usuarios();
     private TablaDeDispersion tabla = new TablaDeDispersion();
@@ -24,7 +25,9 @@ public class Main extends javax.swing.JFrame {
     private Cronometro tiempo = new Cronometro();
     
     /**
-     * Creates new form Main
+     * Descripcion: Constructor de la interfaz Main
+     * @autor: Maria Martinez
+     * @version: 20/11/23
      */
     public Main() {
         initComponents();
@@ -182,6 +185,11 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Descripcion: Carga un archivo del tipo CSV con JTetxtField
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void JTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldActionPerformed
         JFileChooser buscador = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV FILES", "csv");
@@ -225,6 +233,12 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JTextFieldActionPerformed
 
+    /**
+     * Descripcion: Llama y muestra a la interfaz ManejoUsuarios
+     *              Si no hay usuarios registrados, se pregunta si se desea cargar el CSV predeterminado
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void ManejoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManejoUsuariosActionPerformed
         if (usuarios.getNombres().length != 0){
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -286,6 +300,12 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ManejoUsuariosActionPerformed
 
+    /**
+     * Descripcion: Llama y muestra a la interfaz ManejoDocumentos
+     *              Si no hay usuarios registrados, se pregunta si se desea cargar el CSV predeterminado
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void ManejoDocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManejoDocumentosActionPerformed
         if (usuarios.getNombres().length != 0){
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -347,6 +367,11 @@ public class Main extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ManejoDocumentosActionPerformed
 
+    /**
+     * Descripcion: Llama y muestra a la interfaz ManejoDocumentos
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void ManejoColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManejoColaActionPerformed
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

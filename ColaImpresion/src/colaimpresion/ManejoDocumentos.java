@@ -11,9 +11,10 @@ import java.io.FileReader;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Interfaz de Manejo Documentos
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class ManejoDocumentos extends javax.swing.JFrame {
     private Usuarios usuarios;
     private Documento [] documentos;
@@ -22,8 +23,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
     
     private TablaDeDispersion tabla = new TablaDeDispersion();
     private MonticuloBinario monticulo = new MonticuloBinario();
+    
     /**
-     * Creates new form ManejoDocumentos
+     * Descripcion: Contructor de la interfaz Main
+     * @autor: Maria Martinez
+     * @version: 20/11/23
      */
     public ManejoDocumentos() {
         initComponents();
@@ -161,6 +165,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Descripcion: Llama y muestra la interfaz Main
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
         /**
         * Descripcion: El main de la interfaz principal
@@ -184,6 +193,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxTipoActionPerformed
 
+    /**
+     * Descripcion: Agrega un documento a un usuario escogido en un combobox
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void AgregarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarDocumentoActionPerformed
        
         if (usuario != null){
@@ -229,6 +243,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxDocumentosActionPerformed
 
+    /**
+     * Descripcion: Elimina un documento escogido en un combobox
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void EliminarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarDocumentoActionPerformed
         if (usuario != null){ 
             if (boxDocumentos.getSelectedItem()!=  null){
@@ -259,6 +278,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EliminarDocumentoActionPerformed
 
+    /**
+     * Descripcion: Manda a la cola de impresion el documento escogido en un combobox
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void MandarColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MandarColaActionPerformed
         if (usuario != null){ 
             if (boxDocumentos.getSelectedItem()!=  null){
@@ -292,6 +316,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MandarColaActionPerformed
 
+    /**
+     * Descripcion: Escoge un un usuario del combobox y busca el objeto NodoUsuario
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void EscogerUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EscogerUsuarioActionPerformed
         if (boxUsuarios.getSelectedItem()!=  null){
             String user= boxUsuarios.getSelectedItem().toString().replaceAll("\\p{C}", "");
@@ -304,6 +333,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_EscogerUsuarioActionPerformed
 
+    /**
+     * Descripcion: Llama y muestra la interfaz de VistaDocumentos
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (usuario != null){
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -331,6 +365,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxUsuariosActionPerformed
     
+    /**
+     * Descripcion: Llena un combobox con los usuarios registrados
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     public void LlenarboxActionPerformed(java.awt.event.ActionEvent evt) {                                          
         if (usuarios.getNombres().length != 0){
             boxUsuarios.removeAllItems();
@@ -342,6 +381,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         }
     }   
     
+    /**
+     * Descripcion: Llena un combobox con las opciones de tipo de documento
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     public void LlenarboxTiposActionPerformed(java.awt.event.ActionEvent evt) {                                          
         boxTipo.removeAllItems();
         boxTipo.addItem("PDF");
@@ -352,6 +396,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         boxTipo.addItem("WORD");
     }  
     
+    /**
+     * Descripcion: Llena un combobox con las opciones de tamano de documentos
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     public void LlenarboxSizeActionPerformed(java.awt.event.ActionEvent evt) {                                          
         boxSize.removeAllItems();
         boxSize.addItem("1");
@@ -361,6 +410,11 @@ public class ManejoDocumentos extends javax.swing.JFrame {
         boxSize.addItem("5");
     }  
     
+    /**
+     * Descripcion: Llena un combobox con los documentos de un usuario escogido
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     public void LlenarboxDocumentosActionPerformed(java.awt.event.ActionEvent evt) {                                          
         if (documentos.length != 0){
             boxDocumentos.removeAllItems();

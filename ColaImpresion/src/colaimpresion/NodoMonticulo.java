@@ -1,20 +1,25 @@
 package colaimpresion;
 
-/*
- se crea un registro con los datos del documento y una etiqueta que guarda el tiempo transcurrido desde el inicio de la simulación.
- */
-
-
 /**
- *
- * @author mariv
- */
+* Descripcion: Clase NodoMonticulo que guarda los datos del documento encolado y la etiqueta de tiempo correspondiente
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class NodoMonticulo {
     private String nombreDocumento;
     private String tipoDocumento;
     private int tamaño;
     private int tiempo;
     
+    /**
+     * Descripcion: Constructor de la clase NodoMonticulo
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre: Nombre del usuario
+     * @param tipo: Tipo de documento
+     * @param tamano: Tamano del documento
+     * @param tiempo: Etiqueta de tiempo
+     */
     public NodoMonticulo(String nombre, String tipo, int tamaño, int tiempo){
         nombreDocumento = nombre;
         tipoDocumento = tipo;

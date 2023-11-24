@@ -1,11 +1,11 @@
 package colaimpresion;
 
 
-
 /**
- *
- * @author mariv
- */
+* Descripcion: Clase Documento donde se almacena la informacion del documento
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class Documento {
     private String nombreDocumento;
     private String tipoDocumento;
@@ -14,6 +14,14 @@ public class Documento {
     private int posicion;
     private boolean encolado;
     
+    /**
+     * Descripcion: Constructor de la clase Documento
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre: Nombre del documento
+     * @param tipo: Tipo del documento
+     * @param tamano: Tamano del documento
+     */
     public Documento(String nombre, String tipo, int tamaño){
         nombreDocumento = nombre;
         tipoDocumento = tipo;
