@@ -300,7 +300,7 @@ public class Usuarios {
     
     /**
      * Descripcion: Elimina un documento de un usuario
-     * @autor: Andrea Reyes
+     * @autor: Maria Martinez
      * @version: 20/11/23
      * @param nombre: Nombre del usuario
      * @param nombre_documento: Nombre del documento

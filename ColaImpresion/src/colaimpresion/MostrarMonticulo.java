@@ -14,27 +14,51 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import javax. swing.JPanel;
 import colaimpresion.BT;
+
 /**
- *
- * @author andreareyes
- */
+* Descripcion: JPanel donde utilizando metodos de Java se dibuja los nodos del monticulo
+*              junto con sus relaciones, como un arbol
+* @autor: Andrea Reyes
+* @version: 24/11/23
+*/
 public class MostrarMonticulo extends JPanel {
     
         public MonticuloBinario bt; 
         
  
+        /**
+        * Descripcion: Constructor de la clase 
+        * @autor: Andrea Reyes
+        * @version: 24/11/23
+        */
         public MostrarMonticulo(MonticuloBinario bt){
             this.bt=bt;
         }
         
+        
+        /**
+        * Descripcion: Accede al fondo del JFrame y utilizando las primitivas graficas dibuja lineas y nodos
+        * @autor: Andrea Reyes
+        * @version: 24/11/23
+        */
         @Override
         public void paint (Graphics g) {
             super.paint (g) ;
-            Draw(g, 0,0, this.getWidth () -25, 100);
+            Dibujar(g, 0,0, this.getWidth () -25, 100);
 
         }
         
-        public int Draw(Graphics g,int index,int x0, int x1,int y){
+        /**
+        * Descripcion: Metodo recursivo que se encarga de dibujar cada nodo junto con el nombre de documento y su relacion
+        * @autor: Andrea Reyes
+        * @version: 24/11/23
+        * @param index: Indice del nodo en el monticulo
+        * @param g: Objeto de Graphics
+        * @param x0: Coordenada
+        * @param x1: Coordenada
+        * @param y: Coordenada
+        */
+        public int Dibujar(Graphics g,int index,int x0, int x1,int y){
             String data =  bt.getCola()[index] .getNombreDocumento();
             g. setFont (new Font ("Tahoma", Font.BOLD, 20)) ;
             FontMetrics fm= g.getFontMetrics();
@@ -45,7 +69,7 @@ public class MostrarMonticulo extends JPanel {
             
             if (bt.tieneHijoDer(index)) {
                 int hijoDer = bt.hijoDer(index);
-                int x2 = Draw(g,hijoDer,n,x1,y+50);
+                int x2 = Dibujar(g,hijoDer,n,x1,y+50);
                 g.drawLine(n+25, y+30, x2+25, y+50);
                 
               
@@ -53,7 +77,7 @@ public class MostrarMonticulo extends JPanel {
             
             if (bt.tieneHijoIzq(index)) {
                 int hijoIzq = bt.hijoIzq(index);
-                int x2 = Draw(g,hijoIzq,x0,n,y+50);
+                int x2 = Dibujar(g,hijoIzq,x0,n,y+50);
                 g.drawLine(n+25, y+30, x2+25, y+50);
               
             }

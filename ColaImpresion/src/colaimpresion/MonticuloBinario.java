@@ -4,9 +4,6 @@ package colaimpresion;
 
 import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
-import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.view.Viewer;
 
 /**
 * Descripcion: Clase Monticulo Bianrio que se encarga de la cola de impresion
@@ -330,54 +327,6 @@ public class MonticuloBinario {
         JOptionPane.showMessageDialog(null, "\nDocumento: " + doc.getNombreDocumento() + " impreso!");
         return doc.getNombreDocumento();
     }
-    
-    
-    /**
-     * Descripcion: Muestra el monticulo como un arbol
-     * @autor: Andrea Reyes
-     * @version: 24/11/23
-     */
-    public void Show(){
-        Graph graph = new MultiGraph("Monticulo");
-        System.setProperty("org.graphstream.ui", "swing");
-        graph.setAttribute("ui.stylesheet", "node{\n" +
-                "    size: 30px, 30px;\n" +
-                "    fill-color: #FFFF66;\n" +
-                "    text-mode: normal; \n" +
-                "    text-size: 17; \n" +
-                "}");
-        
-        for (int i = 0; i < size; i++){
-            String etiqueta = cola[i].getNombreDocumento().replaceAll("\\p{C}", "");
-            graph.addNode(etiqueta).setAttribute("ui.label", etiqueta);
-            
-        }
-        
-        String etiqueta = cola[0].getNombreDocumento().replaceAll("\\p{C}", "");
-        graph.getNode(etiqueta).setAttribute("xyz", 100,100,100);
-    
-        for (int i = 0; i < size; i++){
-            String etiquetaA = cola[i].getNombreDocumento().replaceAll("\\p{C}", "");
-            
-            
-            if (hijoIzq(i) < size){
-                String etiquetaB = cola[hijoIzq(i)].getNombreDocumento().replaceAll("\\p{C}", "");
-                String etiquetaConeccion = (etiquetaA + " - " + etiquetaB).replaceAll("\\p{C}", "");
-                graph.addEdge(etiquetaConeccion, etiquetaA, etiquetaB, true);
-            }
-            
-            if (hijoDer(i) < size){
-                String etiquetaB = cola[hijoDer(i)].getNombreDocumento().replaceAll("\\p{C}", "");
-                String etiquetaConeccion = (etiquetaA + " - " + etiquetaB).replaceAll("\\p{C}", "");
-                graph.addEdge(etiquetaConeccion, etiquetaA, etiquetaB, true);
-            }
-        }
-        
-        
-        Viewer viewer = graph.display();
-        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-    }
-   
     
 
     public NodoMonticulo[] getCola() {

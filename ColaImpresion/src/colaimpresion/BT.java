@@ -10,23 +10,29 @@ import javax.swing.border.EmptyBorder;
 import colaimpresion.MostrarMonticulo;
 
 /**
- *
- * @author andreareyes
- */
+* Descripcion: Interfaz donde se muestra el monticulo como un arbol
+* @autor: Andrea Reyes
+* @version: 24/11/23
+*/
 public class BT extends JFrame {
 
-    private JPanel contenidoPanel;
+    private JPanel panel;
     public MonticuloBinario bt; 
-    public MostrarMonticulo draw;
+    public MostrarMonticulo p;
 
+    /**
+    * Descripcion: Constructor de la clase, donde se le agrega el JPanel dibujado
+    * @autor: Andrea Reyes
+    * @version: 24/11/23
+    */
     public BT(MonticuloBinario bt) {
         setDefaultCloseOperation (JFrame. DISPOSE_ON_CLOSE);
          setBounds (100, 100, 1500, 900);
-            contenidoPanel = new JPanel ();
-            contenidoPanel. setBorder (new EmptyBorder (5,5,5,5)); contenidoPanel. setLayout (new BorderLayout (0, 0)) ;
-            draw = new MostrarMonticulo (bt) ;
-            contenidoPanel. add (draw);
-            this. setLayout (new BorderLayout () ); setContentPane ( contenidoPanel);
+            panel = new JPanel ();
+            panel. setBorder (new EmptyBorder (5,5,5,5)); panel. setLayout (new BorderLayout (0, 0)) ;
+            p = new MostrarMonticulo (bt) ;
+            panel. add (p);
+            this. setLayout (new BorderLayout () ); setContentPane (panel);
             this.bt = bt;
              setVisible(true);
     }
