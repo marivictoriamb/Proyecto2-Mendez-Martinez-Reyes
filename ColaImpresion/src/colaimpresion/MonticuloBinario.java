@@ -4,82 +4,151 @@ package colaimpresion;
 
 import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
-/*
-import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
-import com.mxgraph.io.mxCodec ;
-import com.mxgraph.util.*;
-import com.mxgraph.analysis.*;
-import com.mxgraph.canvas.*;
-import com.mxgraph.costfunction.*;
-import com.mxgraph.generatorfunction.*;
-import com.mxgraph.io.*;
-import com.mxgraph.layout.*;
-import com.mxgraph.model.*;
-import com.mxgraph.reader.*;
-import com.mxgraph.shape.*;
-import com.mxgraph.swing.*;
-import com.mxgraph.util.*;
-import com.mxgraph.view.*;
-import javax.swing.JFrame;
-*/
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Clase Monticulo Bianrio que se encarga de la cola de impresion
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class MonticuloBinario {
     private NodoMonticulo [] cola;
     private int size;
     
+    
+    /**
+     * Descripcion: Constructor de la clase MonticuloBinario
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     public MonticuloBinario(){
         cola = new NodoMonticulo[0];
         size = 0;
     }
     
+    /**
+     * Descripcion: Pregunta si la cola esta vacia
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @return boolean: Respuesta de la pregunta
+     */
     public boolean IsEmpty(){
         return (cola.length == 0);
     }
     
+    /**
+     * Descripcion: Pregunta por el indice del nodo padre
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param i: Indice del nodo
+     * @return int: Indice del nodo padre
+     */
     public int padre(int i){
         return (i-1)/ 2;
     }
     
+    /**
+     * Descripcion: Pregunta por el indice del nodo hijo izq
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param i: Indice del nodo
+     * @return int: Indice del nodo hijoIzq
+     */
     public int hijoIzq(int i){
         return (2 * i + 1);
     }
     
+    /**
+     * Descripcion: Pregunta por el indice del nodo hijo der
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param i: Indice del nodo
+     * @return int: Indice del nodo hijoDer
+     */
     public int hijoDer(int i){
         return (2 * i) + 2;
     }
     
+    /**
+     * Descripcion: Devuelve la etiqueta del tiempo de la raiz del monticulo
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @return int: Etiqueta
+     */
     public int Peek(){
         return cola[0].getTiempo();
     }
     
+    /**
+     * Descripcion: Pregunta si un nodo tiene hermano der
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param i: Indice del nodo
+     * @return boolean: Valor de la pregunta
+     */
     public boolean tieneHermanoDer(int i){
         return (hermanoDer(i) < size);
     }
     
+    /**
+     * Descripcion: Pregunta si un nodo tiene hermano izq
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param i: Indice del nodo
+     * @return boolean: Valor de la pregunta
+     */
     public boolean tieneHermanoIzq(int i){
         return (hermanoIzq(i) < size);
     }
     
+    
+    /**
+     * Descripcion: Pregunta por el indice del nodo hijo der del padre del nodo
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param i: Indice del nodo
+     * @return int: Indice del nodo
+     */
     public int hermanoDer(int i){
         return hijoDer(padre(i));
     }
     
+    /**
+     * Descripcion: Pregunta por el indice del nodo hijo izq del padre del nodo
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param i: Indice del nodo
+     * @return int: Indice del nodo
+     */
     public int hermanoIzq(int i){
         return hijoIzq(padre(i));
     }
     
+    /**
+     * Descripcion: Pregunta si dos nodos son del mismo documento
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param i: Indice del nodo1
+     * @param j: Indice del nodo2
+     * @return booelan: Valor de la pregunta
+     */
     public boolean iguales(int i, int j){
         return (cola[i].getNombreDocumento().equals(cola[j].getNombreDocumento()));
     }
     
     
+    /**
+     * Descripcion: Inserta un nodo al monticulo
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre: Nombre del documento
+     * @param tipo: Tipo de documento
+     * @param tiempo: Etiqueta tiempo
+     * @param doc: Documento correspondiente al nodo monticulo
+     * @return nuevo: Documento agregado
+     */
     public Documento Insertar (String nombre, String tipo, int tamaño, int tiempo, Documento doc){
         NodoMonticulo nuevo = new NodoMonticulo(nombre, tipo, tamaño, tiempo);
         Ampliar();
@@ -91,6 +160,11 @@ public class MonticuloBinario {
         return doc;
     }
     
+    /**
+     * Descripcion: Amplia el tamano del monticulo
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void Ampliar(){
         NodoMonticulo [] anteriorCola = cola;
         cola = new NodoMonticulo[size + 1];
@@ -99,7 +173,13 @@ public class MonticuloBinario {
         }
     }
     
-    
+    /**
+     * Descripcion: Ajusta la posicion de un nodo en una posicion j del monticulo
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param j: Posicion del nodo
+     * @return i: Posicion final de nodo
+     */
     private int Flotar(int j){
         NodoMonticulo nuevoDoc = cola[j];
         int change = 0;
@@ -145,7 +225,12 @@ public class MonticuloBinario {
     }
     
     
-    
+    /**
+     * Descripcion: Busca el nodo raiz del monticulo
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @return NodoMonticulo: Nodo raiz
+     */
     public NodoMonticulo BuscarMinimo(){
         if (IsEmpty()){
             JOptionPane.showMessageDialog(null, "\nLa Cola de Impresion esta Vacia!");
@@ -155,6 +240,12 @@ public class MonticuloBinario {
         }
     }
     
+    /**
+     * Descripcion: Elimina la raiz del monticulo
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @return NodoMonticulo: NodoMonticulo eliminado
+     */
     public NodoMonticulo EliminarMinimo(){
         if (IsEmpty()){
             JOptionPane.showMessageDialog(null, "\nLa Cola de Impresion esta Vacia!");
@@ -170,6 +261,12 @@ public class MonticuloBinario {
     }
     
     
+    /**
+     * Descripcion: Ajusta las pociones del monticulo cuando se elimina la raiz
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param raiz: Indice de la raiz
+     */
     public void Criba (int raiz){
         boolean esMonticulo = false;
         int hijo;
@@ -198,11 +295,24 @@ public class MonticuloBinario {
         }
     }
     
+    /**
+     * Descripcion: Elimina un documento que no esta en la raiz, como su etiqueta tiempo se modifca
+     *              se debe ajustar el arbol y luego eliminarlo de la raiz
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @param i: Posicion de nodo a eliminar
+     */
     public void EliminarDocumento(int i){
         Flotar(i);
         EliminarMinimo();
     }
     
+    /**
+     * Descripcion: Libera el nodo raiz
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @return String: Nombre del documento liberado
+     */
     public String Liberar(){
         NodoMonticulo doc = EliminarMinimo();
         JOptionPane.showMessageDialog(null, "\nDocumento: " + doc.getNombreDocumento() + " impreso!");
@@ -210,6 +320,11 @@ public class MonticuloBinario {
     }
     
     
+    /**
+     * Descripcion: Muestra el monticulo como un arbol
+     * @autor: Andrea Reyes
+     * @version: 24/11/23
+     */
     public void Show(){
         Graph graph = new MultiGraph("Monticulo");
         System.setProperty("org.graphstream.ui", "swing");

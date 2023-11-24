@@ -11,17 +11,21 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Interfaz de Manejo Usuarios
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class ManejoUsuarios extends javax.swing.JFrame {
     private Usuarios usuarios;
     private TablaDeDispersion tabla = new TablaDeDispersion();
     private MonticuloBinario monticulo = new MonticuloBinario();
     private Cronometro tiempo = new Cronometro();
     DefaultTableModel modelo = new DefaultTableModel();
+    
     /**
-     * Creates new form ManejoUsuarios
+     * Descripcion: Constructor de la interfaz ManejoUsuarios
+     * @autor: Maria Martinez
+     * @version: 20/11/23
      */
     public ManejoUsuarios() {
         initComponents();
@@ -165,6 +169,11 @@ public class ManejoUsuarios extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNombreActionPerformed
 
+     /**
+     * Descripcion: Llena un combobox con las opciones de prioridad de un usuario
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     public void LlenarboxPrioridadActionPerformed(java.awt.event.ActionEvent evt) {                                          
        
         boxPrioridad.removeAllItems();
@@ -178,6 +187,11 @@ public class ManejoUsuarios extends javax.swing.JFrame {
             }
     }   
     
+    /**
+     * Descripcion: Llena un combobox con los usuarios registrados
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
      public void LlenarboxActionPerformed(java.awt.event.ActionEvent evt) {                                          
         boxUsuarios.removeAllItems();
          if (usuarios.getNombres().length != 0){
@@ -192,6 +206,11 @@ public class ManejoUsuarios extends javax.swing.JFrame {
         
     }   
      
+     /**
+     * Descripcion: Agrega un usuario dado el nombre de usuario y la prioridad
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void AgregarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarUsuarioActionPerformed
         String nombre = TextNombre.getText();
         TextNombre.setText("Agregue el nombre de usuario (ejemplo_nombre)");
@@ -203,7 +222,7 @@ public class ManejoUsuarios extends javax.swing.JFrame {
                 String prioridad = boxPrioridad.getSelectedItem().toString().replaceAll("\\p{C}", "");
 
                 if (nombre.contains(" ") || nombre.isEmpty()==true || nombre.length()<2 || nombre.contains("\\p{C}")){
-                    JOptionPane.showMessageDialog(null, "\nError!\nIndique un nombre con el formato correcto!");
+                    JOptionPane.showMessageDialog(null, "\nError!\nIndique un nombre con el formato correcto (mas de 2 caracteres)!");
                 } else if (nombre.length() > 15){
                     JOptionPane.showMessageDialog(null, "\nError!\nEl nombre de usuario debe tener menos de 15 caracteres");
                 } else if (usuarios.Buscar(nombre)!= null){
@@ -221,6 +240,11 @@ public class ManejoUsuarios extends javax.swing.JFrame {
         LlenarUsuariosActionPerformed(evt);
     }//GEN-LAST:event_AgregarUsuarioActionPerformed
     
+    /**
+     * Descripcion: Llena la tabla con los usuarios registrados y su informacion
+     * @autor: Mauricio Mendez
+     * @version: 20/11/23
+     */
     public void LlenarUsuariosActionPerformed(java.awt.event.ActionEvent evt){
         
         int fila = tablaUsuarios.getRowCount();
@@ -248,6 +272,12 @@ public class ManejoUsuarios extends javax.swing.JFrame {
           JOptionPane.showMessageDialog(null, "Error! \n Cargue los usuarios");
       }
     }
+    
+    /**
+     * Descripcion: Boton para llenar la tabla con usuarios
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void MostrarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarUsuariosActionPerformed
         
         LlenarUsuariosActionPerformed(evt);
@@ -274,6 +304,11 @@ public class ManejoUsuarios extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Descripcion: Llama y muestra la interfaz Main
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
         /**
         * Descripcion: El main de la interfaz principal
@@ -295,6 +330,12 @@ public class ManejoUsuarios extends javax.swing.JFrame {
 
     }//GEN-LAST:event_ReturnActionPerformed
 
+    
+    /**
+     * Descripcion: Elimina un usuario escogido en un combobox
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void EliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioActionPerformed
         if (boxUsuarios.getSelectedItem()!=  null){
             String usuario= boxUsuarios.getSelectedItem().toString().replaceAll("\\p{C}", "");

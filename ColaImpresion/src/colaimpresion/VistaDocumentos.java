@@ -12,9 +12,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author MAURICIO MENDEZ
- */
+* Descripcion: Interfaz de Vista Documentos
+* @autor: Mauricio Mendez
+* @version: 21/11/23
+*/
 public class VistaDocumentos extends javax.swing.JFrame {
     private Usuarios usuarios;
     private Documento [] documentos;
@@ -24,7 +25,9 @@ public class VistaDocumentos extends javax.swing.JFrame {
     private TablaDeDispersion tabla = new TablaDeDispersion();
     private MonticuloBinario monticulo = new MonticuloBinario();
     /**
-     * Creates new form VistaDocumentos
+     * Descripcion: Contructor de la interfaz Manejo Cola Impresion
+     * @autor: Mauricio Mendez
+     * @version: 21/11/23
      */
     public VistaDocumentos() {
         initComponents();
@@ -112,6 +115,11 @@ public class VistaDocumentos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
     
+    /**
+     * Descripcion: Lelna la tabla con los documentos y su informacion de un usuario seleccionado
+     * @autor: Mauricio Mendez
+     * @version: 21/11/23
+     */
     public void LlenadoTabla(java.awt.event.ActionEvent evt){
         int fila = tablaUsuarios.getRowCount();
 

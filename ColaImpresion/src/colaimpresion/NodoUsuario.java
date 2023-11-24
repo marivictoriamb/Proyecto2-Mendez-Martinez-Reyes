@@ -5,9 +5,10 @@ package colaimpresion;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Clase NodoUsuario que contiene la informacion de un usuario registrado
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class NodoUsuario {
     private String nombreUsuario;
     private String tipo;
@@ -15,6 +16,13 @@ public class NodoUsuario {
     private NodoUsuario next;
     private boolean dead;
     
+    /**
+     * Descripcion: Constructor de la clase NodoUsuario
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre: Nombre del usuario
+     * @param tipo: Tipo de usuario (prioridad)
+     */
     public NodoUsuario(String nombre, String tipo){
         nombreUsuario = nombre;
         this.tipo = tipo;
@@ -23,6 +31,15 @@ public class NodoUsuario {
         dead = false;
     }
     
+    /**
+     * Descripcion: Agrega un documento
+     * @autor: Mauricio Mendez
+     * @version: 21/11/23
+     * @param nombre: Nombre del documento
+     * @param tipo: Tipo de documento
+     * @param tamano: Tamano del documento
+     * @param nodo: NodoMonticulo si esta en la cola
+     */
     public void AgregarDocumento(String nombre, String tipo, int tamaño, NodoMonticulo nodo){
         
         Documento nuevo = new Documento(nombre, tipo, tamaño);
@@ -38,6 +55,13 @@ public class NodoUsuario {
         documentos = actualizado;
     }
     
+    
+    /**
+     * Descripcion: Eliminar un documento
+     * @autor: Andrea Reyes
+     * @version: 21/11/23
+     * @param nombre: El nombre del documento
+     */
     public Documento EliminarDocumento(String nombre){
         Documento [] actualizado = new Documento[documentos.length - 1];
         Documento documento = null;
@@ -65,7 +89,13 @@ public class NodoUsuario {
         return documento;
     }
     
-    
+    /**
+     * Descripcion: Busca un documento si no esta encolado para mandarlo a la cola
+     * @autor: Andrea Reyes
+     * @version: 21/11/23
+     * @param nombre: Nombre del documento
+     * @return doc: Documento a mandar a la cola
+     */
     public Documento MandarDocumento(String nombre){
         Documento doc = null;
         
@@ -85,6 +115,13 @@ public class NodoUsuario {
     }
       
     
+    /**
+     * Descripcion: Busca un documento
+     * @autor: Mauricio Mendez
+     * @version: 21/11/23
+     * @param nombre: Nombre del documento
+     * @return found: Documento buscado
+     */
     public Documento Buscar(String nombre){
         Documento found = null;
         
@@ -99,6 +136,13 @@ public class NodoUsuario {
         return found;
     }
     
+    /**
+     * Descripcion: Cambia el valor de encolado de un documento
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @param nombre_doc: Nombre del documento
+     * @param valor: Valor a cambiar
+     */
     public void Chequear( String nombre_doc, boolean valor){
         for (int i = 0; i < documentos.length; i ++){
             if (documentos[i].getNombreDocumento().equals(nombre_doc)){
@@ -108,6 +152,11 @@ public class NodoUsuario {
     }
     
     
+    /**
+     * Descripcion: Muestra los documentos con su informacion
+     * @autor: Andrea Reyes
+     * @version: 20/11/23
+     */
     public String Show(){
         String content = "";
         
@@ -120,7 +169,12 @@ public class NodoUsuario {
         return content;
     }
     
-    
+    /**
+     * Descripcion: Calcula la prioridad del usuario
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     * @return procentaje: Porcentaje relativo a la prioridad
+     */
     public float CalcularPrioridad(){
         float porcentaje = 1;
         if (tipo.equals("prioridad_alta")){
@@ -134,6 +188,12 @@ public class NodoUsuario {
         return porcentaje;
     }
     
+    /**
+     * Descripcion: Calcula la cantidad de documentos encolados
+     * @autor: Maria Martinez
+     * @version: 23/11/23
+     * @return valor: Int de la cantidad calculada
+     */
     public int InQueue(){
         int valor = 0;
         

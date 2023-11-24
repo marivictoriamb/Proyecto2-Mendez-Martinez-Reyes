@@ -11,9 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
- * @author mariv
- */
+* Descripcion: Interfaz de Manejo Cola Impresion
+* @autor: Maria Martinez
+* @version: 20/11/23
+*/
 public class ManejoColaImpresion extends javax.swing.JFrame {
     private Usuarios usuarios;
     private TablaDeDispersion tabla = new TablaDeDispersion();
@@ -23,7 +24,9 @@ public class ManejoColaImpresion extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel();
 
     /**
-     * Creates new form ManejoColaImpresion
+     * Descripcion: Contructor de la interfaz Manejo Cola Impresion
+     * @autor: Maria Martinez
+     * @version: 20/11/23
      */
     public ManejoColaImpresion() {
         initComponents();
@@ -121,6 +124,12 @@ public class ManejoColaImpresion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * Descripcion: Llama y muestra la interfaz Main
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
         /**
         * Descripcion: El main de la interfaz principal
@@ -141,6 +150,11 @@ public class ManejoColaImpresion extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_ReturnActionPerformed
 
+    /**
+     * Descripcion: Libera de la cola de impresion un documento para imprimirlo
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void LiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiberarActionPerformed
         if (!monticulo.IsEmpty()){
             String nombre = monticulo.Liberar();
@@ -156,6 +170,11 @@ public class ManejoColaImpresion extends javax.swing.JFrame {
         
     }//GEN-LAST:event_LiberarActionPerformed
 
+    /**
+     * Descripcion: Muestra la cola de impresion como un arbol binario
+     * @autor: Maria Martinez
+     * @version: 20/11/23
+     */
     private void MostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarArbolActionPerformed
         if (!monticulo.IsEmpty()){
             monticulo.Show();
@@ -163,6 +182,12 @@ public class ManejoColaImpresion extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "\nLa cola de impresion esta vacia!");
         }
     }//GEN-LAST:event_MostrarArbolActionPerformed
+    
+    /**
+     * Descripcion: Muestra la cola de impresion en una tabla
+     * @autor: Mauricio Mendez
+     * @version: 20/11/23
+     */
     public void MostrarColaPActionPerformed(java.awt.event.ActionEvent evt) {                                            
         int fila = tablaUsuarios.getRowCount();
         
