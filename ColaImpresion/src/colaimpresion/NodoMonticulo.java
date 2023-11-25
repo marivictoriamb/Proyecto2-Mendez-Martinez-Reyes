@@ -10,6 +10,7 @@ public class NodoMonticulo {
     private String tipoDocumento;
     private int tamaño;
     private int tiempo;
+    private int pos;
     
     /**
      * Descripcion: Constructor de la clase NodoMonticulo
@@ -25,6 +26,7 @@ public class NodoMonticulo {
         tipoDocumento = tipo;
         this.tamaño = tamaño;
         this.tiempo = tiempo;
+        pos = 0;
     }
 
     public String getNombreDocumento() {
@@ -57,6 +59,14 @@ public class NodoMonticulo {
 
     public void setTiempo(int tiempo) {
         this.tiempo = tiempo;
+    }
+
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
     }
     
     

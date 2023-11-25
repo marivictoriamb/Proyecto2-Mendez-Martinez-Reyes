@@ -127,18 +127,32 @@ public class VistaDocumentos extends javax.swing.JFrame {
             modelo.removeRow(i);
         }
         Documento[] documentos = usuario.getDocumentos();
-
-        for (int i = 0; i < documentos.length; i++) {
-            String nombredoc = documentos[i].getNombreDocumento();
-            String tipodoc = documentos[i].getTipoDocumento();
-            int tamañodoc = documentos[i].getTamaño();
-            String encolado= "";
-            if(documentos[i].isEncolado()==false){
-                encolado = "No";
-            }else{
-                encolado = "Si";
+        
+        if (usuario.isDead()){
+            for (int i = 0; i < documentos.length; i++) {
+                if (documentos[i].isEncolado()){
+                    String nombredoc = documentos[i].getNombreDocumento();
+                    String tipodoc = documentos[i].getTipoDocumento();
+                    int tamañodoc = documentos[i].getTamaño();
+                    String encolado= "Si";
+                    modelo.addRow(new Object[]{nombredoc,tipodoc,tamañodoc,encolado });
+                }
             }
-            modelo.addRow(new Object[]{nombredoc,tipodoc,tamañodoc,encolado });
+           
+        } else{
+           
+            for (int i = 0; i < documentos.length; i++) {
+                String nombredoc = documentos[i].getNombreDocumento();
+                String tipodoc = documentos[i].getTipoDocumento();
+                int tamañodoc = documentos[i].getTamaño();
+                String encolado= "";
+                if(documentos[i].isEncolado()==false){
+                    encolado = "No";
+                }else{
+                    encolado = "Si";
+                }
+                modelo.addRow(new Object[]{nombredoc,tipodoc,tamañodoc,encolado });
+            }
         }
     }    
     

@@ -91,7 +91,7 @@ public class NodoUsuario {
     
     /**
      * Descripcion: Busca un documento si no esta encolado para mandarlo a la cola
-     * @autor: Andrea Reyes
+     * @autor: Maria Martinez
      * @version: 21/11/23
      * @param nombre: Nombre del documento
      * @return doc: Documento a mandar a la cola
@@ -151,23 +151,6 @@ public class NodoUsuario {
         }
     }
     
-    
-    /**
-     * Descripcion: Muestra los documentos con su informacion
-     * @autor: Andrea Reyes
-     * @version: 20/11/23
-     */
-    public String Show(){
-        String content = "";
-        
-        if (documentos.length != 0){
-            for (int i = 0; i < documentos.length; i ++){
-                content += "\n    Nombre: " + documentos[i].getNombreDocumento() + " / Tipo: " + documentos[i].getTipoDocumento() + " / Tamaño: " + documentos[i].getTamaño() + " / Nodod: " + documentos[i].getNodo();
-            }
-        }
-        
-        return content;
-    }
     
     /**
      * Descripcion: Calcula la prioridad del usuario

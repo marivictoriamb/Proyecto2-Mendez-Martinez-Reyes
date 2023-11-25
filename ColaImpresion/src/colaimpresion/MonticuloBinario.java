@@ -4,9 +4,6 @@ package colaimpresion;
 
 import javax.swing.JOptionPane;
 import javax.swing.JOptionPane;
-import org.graphstream.graph.*;
-import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.view.Viewer;
 
 /**
 * Descripcion: Clase Monticulo Bianrio que se encarga de la cola de impresion
@@ -71,6 +68,18 @@ public class MonticuloBinario {
         return (2 * i) + 2;
     }
     
+    
+    public boolean tieneHijoIzq(int i){
+    return (hijoIzq(i)<size);
+    
+    
+    }
+    
+    public boolean tieneHijoDer(int i){
+    return (hijoDer(i)<size);
+    
+    
+    }
     /**
      * Descripcion: Devuelve la etiqueta del tiempo de la raiz del monticulo
      * @autor: Maria Martinez
@@ -191,10 +200,13 @@ public class MonticuloBinario {
                 if(!iguales(i, hermanoIzq(i))){
                     if(cola[padre(i)].getTiempo() < cola[hermanoIzq(i)].getTiempo()){
                         NodoMonticulo hermano = cola[hermanoIzq(i)];
+                        
+                        cola[padre(i)].setPos(hermanoIzq(i));
+                        cola[hermanoIzq(i)].setPos(i);
+                        
                         cola[hermanoIzq(i)] = cola[padre(i)];
                         cola[i] = hermano; 
                         i = padre(i); // sube un nivel en el árbol
-                        System.out.println(i);
                         change = 1;
                     }
                 }
@@ -205,6 +217,10 @@ public class MonticuloBinario {
                     if(!iguales(i, hermanoDer(i))){
                         if(cola[padre(i)].getTiempo() > cola[hermanoDer(i)].getTiempo()){
                             NodoMonticulo hermano = cola[hermanoDer(i)];
+                            
+                            cola[padre(i)].setPos(hermanoDer(i));
+                            cola[hermanoDer(i)].setPos(i);
+                        
                             cola[hermanoDer(i)] = cola[padre(i)];
                             cola[i] = hermano; 
                             i = padre(i); // sube un nivel en el árbol
@@ -215,11 +231,13 @@ public class MonticuloBinario {
             }
             
             if (change == 0){
+                cola[padre(i)].setPos(i);
                 cola[i] = cola[padre(i)]; // baja el padre al hueco
                 i = padre(i); // sube un nivel en el árbol
             }
         }
         
+        nuevoDoc.setPos(i);
         cola[i] = nuevoDoc; // sitúa la clave en su posición
         return i;
     }
@@ -285,7 +303,10 @@ public class MonticuloBinario {
                 
             // compara raiz con el menor de los hijos
             if (cola[hijo].getTiempo() < (cola[raiz].getTiempo())){
+                cola[raiz].setPos(hijo);
                 NodoMonticulo t = cola[raiz];
+                cola[hijo].setPos(raiz);
+                
                 cola[raiz] = cola[hijo];
                 cola[hijo] = t;
                 raiz = hijo; // continua por la rama de claves mínimas 
@@ -320,52 +341,6 @@ public class MonticuloBinario {
     }
     
     
-    /**
-     * Descripcion: Muestra el monticulo como un arbol
-     * @autor: Andrea Reyes
-     * @version: 24/11/23
-     */
-    public void Show(){
-        Graph graph = new MultiGraph("Monticulo");
-        System.setProperty("org.graphstream.ui", "swing");
-        graph.setAttribute("ui.stylesheet", "node{\n" +
-                "    size: 30px, 30px;\n" +
-                "    fill-color: #FFFF66;\n" +
-                "    text-mode: normal; \n" +
-                "    text-size: 17; \n" +
-                "}");
-        
-        for (int i = 0; i < size; i++){
-            String etiqueta = cola[i].getNombreDocumento().replaceAll("\\p{C}", "");
-            graph.addNode(etiqueta).setAttribute("ui.label", etiqueta);
-            
-        }
-        
-        String etiqueta = cola[0].getNombreDocumento().replaceAll("\\p{C}", "");
-        graph.getNode(etiqueta).setAttribute("xyz", 100,100,100);
-    
-        for (int i = 0; i < size; i++){
-            String etiquetaA = cola[i].getNombreDocumento().replaceAll("\\p{C}", "");
-            
-            
-            if (hijoIzq(i) < size){
-                String etiquetaB = cola[hijoIzq(i)].getNombreDocumento().replaceAll("\\p{C}", "");
-                String etiquetaConeccion = (etiquetaA + " - " + etiquetaB).replaceAll("\\p{C}", "");
-                graph.addEdge(etiquetaConeccion, etiquetaA, etiquetaB, true);
-            }
-            
-            if (hijoDer(i) < size){
-                String etiquetaB = cola[hijoDer(i)].getNombreDocumento().replaceAll("\\p{C}", "");
-                String etiquetaConeccion = (etiquetaA + " - " + etiquetaB).replaceAll("\\p{C}", "");
-                graph.addEdge(etiquetaConeccion, etiquetaA, etiquetaB, true);
-            }
-        }
-        
-        
-        Viewer viewer = graph.display();
-        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
-    }
-   
     
 
     public NodoMonticulo[] getCola() {

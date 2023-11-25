@@ -77,8 +77,9 @@ public class TablaDeDispersion {
      * @param nombre_documento: Nombre del documento
      * @para tiempo: Etiqueta tiempo de la raiz del monticulo binario
      */
-    public void SearchDocumento(String nombre_usuario, String nombre_documento, int tiempo){
+    public int SearchDocumento(String nombre_usuario, String nombre_documento, int tiempo){
         int key = CalculateHash(nombre_usuario);
+        int posicion = 0;
         
         NodoUsuario valor = tabla[key];
         
@@ -95,6 +96,7 @@ public class TablaDeDispersion {
                 for (int i = 0; i < documentos.length; i++){
                     if (documentos[i].getNombreDocumento().equals(nombre_documento)){
                         documentos[i].getNodo().setTiempo(tiempo - 1);;
+                        posicion = documentos[i].getNodo().getPos();
                         aux.EliminarDocumento(nombre_documento);
                         break;
                     }
@@ -110,6 +112,7 @@ public class TablaDeDispersion {
             }
         }
         
+        return posicion;
     }
     
     /**
