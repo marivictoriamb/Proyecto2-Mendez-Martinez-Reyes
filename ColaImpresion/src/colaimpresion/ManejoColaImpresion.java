@@ -177,7 +177,9 @@ public class ManejoColaImpresion extends javax.swing.JFrame {
      */
     private void MostrarArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarArbolActionPerformed
         if (!monticulo.IsEmpty()){
-            monticulo.Show();
+            BT mostrar = new BT(monticulo);
+            
+            
         } else {
             JOptionPane.showMessageDialog(null, "\nLa cola de impresion esta vacia!");
         }

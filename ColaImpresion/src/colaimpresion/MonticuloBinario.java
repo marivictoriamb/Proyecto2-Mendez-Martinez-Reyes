@@ -71,6 +71,18 @@ public class MonticuloBinario {
         return (2 * i) + 2;
     }
     
+    
+    public boolean tieneHijoIzq(int i){
+    return (hijoIzq(i)<size);
+    
+    
+    }
+    
+    public boolean tieneHijoDer(int i){
+    return (hijoDer(i)<size);
+    
+    
+    }
     /**
      * Descripcion: Devuelve la etiqueta del tiempo de la raiz del monticulo
      * @autor: Maria Martinez
